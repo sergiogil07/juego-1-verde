@@ -1,0 +1,108 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+  flex-direction: column; /* Asegura que el contenido se apile de arriba hacia abajo */
+}
+
+.game-container {
+  display: grid;
+  grid-template-columns: repeat(4, 150px);
+  grid-gap: 10px;
+  padding: 20px;
+}
+
+/* Estilo de las cartas */
+.card {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.3s, transform 0.3s, box-shadow 0.3s, opacity 0.5s ease-out;
+}
+
+/* Estilo de las imágenes dentro de las cartas */
+.card img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Animación de selección - más notoria */
+.card.selected {
+  border: 4px solid #1e90ff; /* Azul brillante */
+  transform: scale(0.9); /* Aumenta el tamaño de la carta un 10% */
+  box-shadow: 0 0 20px rgba(30, 144, 255, 0.8); /* Sombra azul brillante y más grande */
+  transition: transform 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Desvanecimiento de las cartas emparejadas */
+.card.matched.hidden {
+  opacity: 0; /* Las cartas emparejadas se desvanecen */
+  transition: opacity 1s ease-out; /* Transición suave de opacidad */
+}
+
+/* Ajustes en las cartas seleccionadas y emparejadas */
+.card.matched {
+  border: 2px solid green; /* Borde verde cuando las cartas están emparejadas */
+  opacity: 0.6; /* Hacer que las cartas emparejadas sean menos opacas */
+  pointer-events: none; /* Desactivar la interacción con las cartas emparejadas */
+}
+
+/* Cambio de color a rojo para las cartas incorrectas */
+.card.incorrect {
+  border: 4px solid red; /* Borde rojo para indicar que las cartas no coinciden */
+  animation: shake 0.5s ease-out; /* Agregar animación de "sacudida" para un efecto más llamativo */
+}
+
+/* Agregar una animación de sacudida para las cartas incorrectas */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Estilos para el contenedor del botón de reinicio */
+.restart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Asegura que ocupe el 100% de ancho */
+  position: absolute; /* Posiciona el contenedor de manera absoluta */
+  top: 50%; /* Posiciona al 50% desde la parte superior */
+  left: 50%; /* Posiciona al 50% desde la parte izquierda */
+  transform: translate(-50%, -50%); /* Centra exactamente el contenedor */
+  text-align: center; /* Centra el texto dentro del botón */
+}
+
+#restart-btn {
+  padding: 70px 90px;
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 50px;
+}
+
+#restart-btn:hover {
+  background-color: #4682b4;
+}
